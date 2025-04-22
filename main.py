@@ -1,6 +1,6 @@
 import click
 
-@click.group()
+@click.command()
 @click.option('--dbURL', prompt='AstraDB URL:',
               help='The DB url to make changes on.')
 
