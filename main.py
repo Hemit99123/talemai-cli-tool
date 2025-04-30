@@ -1,11 +1,32 @@
 import click
+import os
+
+CONFIG_FILE = 'config.txt'
+
+def read_db_url():
+    if os.path.exists(CONFIG_FILE):
+        with open(CONFIG_FILE, 'r') as file:
+            return file.read().strip()
+    return None
+
+def write_db_url(url):
+    with open(CONFIG_FILE, 'w') as file:
+        file.write(url.strip())
 
 @click.command()
-@click.option('--dbURL', prompt='AstraDB URL:',
-              help='The DB url to make changes on.')
+@click.option('--update', is_flag=True, help='Update the AstraDB URL.')
+def main(update):
+    """Talem AI CLI with AstraDB URL management."""
+    click.echo(click.style("Welcome to Talem AI CLI!", fg="blue"))
 
-def main():
-  click.echo(click.style("Welcome to Talem AI CLI!"), fg="blue")
+    current_url = read_db_url()
 
-if (__name__ == '__main__'):
-  main()
+    if update or not current_url:
+        new_url = click.prompt('Enter new AstraDB URL')
+        write_db_url(new_url)
+        click.echo(click.style("AstraDB URL updated successfully.", fg="green"))
+    else:
+        click.echo(click.style(f"Using stored AstraDB URL: {current_url}", fg="yellow"))
+
+if __name__ == '__main__':
+    main()
