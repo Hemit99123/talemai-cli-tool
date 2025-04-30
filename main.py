@@ -16,7 +16,7 @@ def write_db_url(url):
 @click.command()
 @click.option('--update', is_flag=True, help='Update the AstraDB URL.')
 def main(update):
-    """Talem AI CLI with AstraDB URL management."""
+    """Talem AI CLI."""
     click.echo(click.style("Welcome to Talem AI CLI!", fg="blue"))
 
     current_url = read_db_url()
@@ -26,7 +26,7 @@ def main(update):
         write_db_url(new_url)
         click.echo(click.style("AstraDB URL updated successfully.", fg="green"))
     else:
-        click.echo(click.style(f"Using stored AstraDB URL: {current_url}", fg="yellow"))
+        click.echo(click.style(f"Using stored AstraDB URL", fg="yellow"))
 
 if __name__ == '__main__':
     main()
