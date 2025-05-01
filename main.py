@@ -4,7 +4,7 @@ import os
 CONFIG_FILE = 'config.txt'
 
 def read_db_url():
-    if os.path.exists(CONFIG_FILE):
+    if (os.path.exists(CONFIG_FILE) == True):
         with open(CONFIG_FILE, 'r') as file:
             return file.read().strip()
     return None
@@ -21,12 +21,12 @@ def main(update):
 
     current_url = read_db_url()
 
-    if update or not current_url:
+    if (update or not current_url):
         new_url = click.prompt('Enter new AstraDB URL')
         write_db_url(new_url)
         click.echo(click.style("AstraDB URL updated successfully.", fg="green"))
     else:
         click.echo(click.style(f"Using stored AstraDB URL", fg="yellow"))
 
-if __name__ == '__main__':
+if (__name__ == '__main__'):
     main()
