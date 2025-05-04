@@ -44,6 +44,7 @@ jobs:
         uses: pypa/gh-action-pypi-publish@v1.5.1
         with:
           user: __token__
+          # This is a repo secret under security/secrets and variables/actions tab in settings of a github repo
           password: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Cleanup build assets
