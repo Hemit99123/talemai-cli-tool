@@ -2,13 +2,16 @@ from setuptools import setup, find_packages
 
 setup(
     name='talemai',
-    version='0.0.0',
+    version='0.2.5',
+    author='Hemit Patel',
+    description='A description of your project',
     packages=find_packages(),
     include_package_data=True,
+    python_requires='>=3.8',
     install_requires=[
-        'Click',
-        'aiofiles',     
-        'PyPDF2',       
+        'click',
+        'aiofiles',
+        'PyPDF2',
         'pypdf',
         'pyfiglet',
         'langchain',
@@ -18,7 +21,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'yourscript = yourpackage.scripts.yourscript:cli',  # Update with your actual script and function
+            'talemai = talemai.__main__:main',  # Adjust path as needed
         ],
     },
 )

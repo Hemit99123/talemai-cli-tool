@@ -4,3 +4,6 @@ astra_config.json
 .env
 __pycache__
 source.pdf
+dist
+build
+*.egg-info

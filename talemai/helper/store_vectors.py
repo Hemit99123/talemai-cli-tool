@@ -2,9 +2,9 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_astradb import AstraDBVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
-from helper.pdf import save_online_pdf
-from helper.creditionals import read_db_config
-from helper.spinner import spinner
+from talemai.helper.pdf import save_online_pdf
+from talemai.helper.creditionals import read_db_config
+from talemai.helper.spinner import spinner
 import os
 import click
 

@@ -1,7 +1,7 @@
 import click
 import pyfiglet
-from helper.creditionals import read_db_config, write_db_config
-from helper.store_vectors import store_vectors
+from talemai.helper.creditionals import read_db_config, write_db_config
+from talemai.helper.store_vectors import store_vectors
 import asyncio
 
 @click.command()
@@ -32,6 +32,3 @@ def main():
     # asyncio runs in as async which is required for successful execution within astradb internals
 
     asyncio.run(store_vectors(pdf_url,collection_name,namespace))
-    
-if (__name__ == '__main__'):
-    main()
