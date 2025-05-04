@@ -1,0 +1,49 @@
+name: Build & Upload Python Package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Bump patch version in setup.py
+        run: |
+          ver=$(grep "version=" setup.py | sed -E "s/.*version=['\"]([0-9]+)\.([0-9]+)\.([0-9]+)['\"].*/\1.\2.\3/")
+          major=$(echo $ver | cut -d. -f1)
+          minor=$(echo $ver | cut -d. -f2)
+          patch=$(echo $ver | cut -d. -f3)
+          new_patch=$((patch + 1))
+          new_version="$major.$minor.$new_patch"
+          echo "New version: $new_version"
+          sed -i "s/version=['\"][0-9]\+\.[0-9]\+\.[0-9]\+['\"]/version='$new_version'/" setup.py
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install setuptools wheel twine
+
+      - name: Clean and build package
+        run: |
+          rm -rf dist/ build/ *.egg-info
+          python setup.py sdist bdist_wheel
+
+      - name: Upload to PyPI
+        env:
+          TWINE_USERNAME: "__token__"
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+        run: |
+          twine upload dist/*
+
+      - name: Cleanup build artifacts
+        run: |
+          rm -rf dist/ build/ *.egg-info
