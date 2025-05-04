@@ -14,12 +14,16 @@ def write_db_url(url):
         file.write(url.strip())
 
 @click.command()
+
+# This is the update paramter variable
 @click.option('--update', is_flag=True, help='Update the AstraDB URL.')
+
 def main(update):
     """Talem AI CLI."""
     click.echo(click.style("Welcome to Talem AI CLI!", fg="blue"))
 
     current_url = read_db_url()
+    collection_name = click.prompt("Enter collection name to update")
 
     if (update or not current_url):
         new_url = click.prompt('Enter new AstraDB URL')
