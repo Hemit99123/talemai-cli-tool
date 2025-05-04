@@ -37,7 +37,7 @@ jobs:
 
       - name: Commit version bump to setup.py
         run: |
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Hemit99123/talemai-cli.git
+          git remote set-url origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/Hemit99123/talemai-cli.git
           git add setup.py
           git commit -m "Bump version to $new_version"
           git push
