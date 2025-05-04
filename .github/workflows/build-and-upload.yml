@@ -1,17 +1,17 @@
-name: Build & Upload Python Package
+name: Build & Publish Python Package
 
 on:
   push:
     branches:
-      - main  # This will trigger the workflow on any push to the main branch
-  workflow_dispatch:  # You can still manually trigger the workflow as well
+      - main  # Trigger on pushes to main
+  workflow_dispatch:  # Also allow manual trigger
 
 jobs:
-  build-and-upload:
+  build-and-publish:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Python
@@ -40,12 +40,11 @@ jobs:
           rm -rf dist/ build/ *.egg-info
           python setup.py sdist bdist_wheel
 
-      - name: Upload to PyPI
-        env:
-          TWINE_USERNAME: "__token__"
-          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
-        run: |
-          twine upload dist/*
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@v1.5.1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
 
       - name: Cleanup build artifacts
         run: |
