@@ -26,6 +26,7 @@ async def store_vectors(pdf_url, collection_name, namespace):
     embedding_model = "sentence-transformers/all-MiniLM-L6-v2"
     embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
 
+
     spinner()
 
     vectorstore = AstraDBVectorStore(

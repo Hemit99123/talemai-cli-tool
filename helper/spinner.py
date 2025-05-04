@@ -1,17 +1,16 @@
 import click
 import itertools
-import sys
 import time
 
 def spinner():
+
+    # initailly clear screen of everything 
+    click.clear()
+
     spinner = itertools.cycle("|/-\\")
-    click.echo(click.style("Loading... ", fg="yellow"), nl=False)
 
-    for _ in range(20):  # simulate work
-        sys.stdout.write(next(spinner))
-        sys.stdout.flush()
+    for _ in range(20):  # simulate loading through the spinner cycle of charcters 
+        click.echo(click.style(next(spinner), nl=False, fg="blue"))
         time.sleep(0.1)
-        sys.stdout.write("\b")
+        click.clear()
 
-if __name__ == "__main__":
-    main()
