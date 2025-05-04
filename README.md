@@ -16,3 +16,4 @@ pip install -e .
 - Langchain (to convert the pdfs into vector embeddings)
 - AstraDB (to store the new vector embeddings)
 - Pyfiglet (to make a fashionable and large title greeting)
+- Setuptools (allows to config project to be a module in pip)
