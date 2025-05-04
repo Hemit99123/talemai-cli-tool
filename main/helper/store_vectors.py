@@ -2,9 +2,9 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_astradb import AstraDBVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
-from src.helper.pdf import save_online_pdf
-from src.helper.creditionals import read_db_config
-from src.helper.spinner import spinner
+from main.helper.pdf import save_online_pdf
+from main.helper.creditionals import read_db_config
+from main.helper.spinner import spinner
 import os
 import click
 
