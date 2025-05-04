@@ -3,8 +3,8 @@ name: Build & Publish Python Package
 on:
   push:
     branches:
-      - main  # Trigger on pushes to main
-  workflow_dispatch:  # Also allow manual trigger
+      - main
+  workflow_dispatch:
 
 jobs:
   build-and-publish:
@@ -20,6 +20,7 @@ jobs:
           python-version: '3.10'
 
       - name: Bump patch version in setup.py
+        id: versioning
         run: |
           ver=$(grep "version=" setup.py | sed -E "s/.*version=['\"]([0-9]+)\.([0-9]+)\.([0-9]+)['\"].*/\1.\2.\3/")
           major=$(echo $ver | cut -d. -f1)
@@ -29,17 +30,20 @@ jobs:
           new_version="$major.$minor.$new_patch"
           echo "New version: $new_version"
           sed -i "s/version=['\"][0-9]\+\.[0-9]\+\.[0-9]\+['\"]/version='$new_version'/" setup.py
+          echo "version=$new_version" >> $GITHUB_OUTPUT
 
-      - name: Set up person informations
+      - name: Set up Git config
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-      - name: Commit version bump to setup.py
+      - name: Commit version bump
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          git remote set-url origin https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/Hemit99123/talemai-cli.git
+          git remote set-url origin https://x-access-token:${PAT_TOKEN}@github.com/Hemit99123/talemai-cli.git
           git add setup.py
-          git commit -m "Bump version to $new_version"
+          git commit -m "Bump version to ${{ steps.versioning.outputs.version }}"
           git push
 
       - name: Install build dependencies
