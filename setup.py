@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='talemai',
-    version='0.2.5',
+    version='0.1.1',
     author='Hemit Patel',
     description='A description of your project',
     packages=find_packages(),

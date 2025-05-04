@@ -10,7 +10,7 @@ def spinner():
     spinner = itertools.cycle("|/-\\")
 
     for _ in range(20):  # simulate loading through the spinner cycle of charcters 
-        click.echo(click.style(next(spinner), nl=False, fg="blue"))
+        click.echo(click.style(next(spinner), fg="blue"))
         time.sleep(0.1)
         click.clear()
 
