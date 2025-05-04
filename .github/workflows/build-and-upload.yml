@@ -1,7 +1,10 @@
 name: Build & Upload Python Package
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main  # This will trigger the workflow on any push to the main branch
+  workflow_dispatch:  # You can still manually trigger the workflow as well
 
 jobs:
   build-and-upload:
