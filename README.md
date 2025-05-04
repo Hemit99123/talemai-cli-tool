@@ -2,6 +2,12 @@
 
 This CLI tooling allows for the addition of more context to be used by Talem AI chatbot.
 
+## Usage (very simple):
+
+```bash
+pip install talemai
+pip install -e.
+```
 ## Technologies used:
 
 - Click (to build a beautiful CLI)
