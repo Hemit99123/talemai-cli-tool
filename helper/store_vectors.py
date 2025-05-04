@@ -10,10 +10,6 @@ async def store_vectors(pdf_url, collection_name, namespace):
 
     db_config = read_db_config()
 
-    ASTRA_DB_API_ENDPOINT = input("AstraDB API Endpoint: ")
-    ASTRA_DB_APPLICATION_TOKEN = input("AstraDB Application Token: ")
-
-
     pdf_path = save_online_pdf(pdf_url)
 
     # Error handling if file is not found
