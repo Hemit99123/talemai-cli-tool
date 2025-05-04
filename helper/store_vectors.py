@@ -2,7 +2,7 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_astradb import AstraDBVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
-from pdf import save_online_pdf
+from helper.pdf import save_online_pdf
 from helper.creditionals import read_db_config
 import os
 
