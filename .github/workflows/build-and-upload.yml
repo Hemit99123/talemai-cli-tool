@@ -33,6 +33,8 @@ jobs:
       - name: Creditionals set up
         run: |
           echo "https://${{ secrets.GH_TOKEN }}@github.com" > ~/.git-credentials
+            git config --global user.email "actions@talem.org"
+            git config --global user.name "GITHUB ACTIONS ROBOT"
 
       - name: Commit version bump to setup.py
         run: |
