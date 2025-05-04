@@ -17,3 +17,4 @@ pip install -e .
 - AstraDB (to store the new vector embeddings)
 - Pyfiglet (to make a fashionable and large title greeting)
 - Setuptools (allows to config project to be a module in pip)
+- Twine (CLI tool used to upload onto pip registry)
