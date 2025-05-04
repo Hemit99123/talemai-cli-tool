@@ -2,3 +2,4 @@
 venv
 astradb_config.txt
 .env
+__pycache__
