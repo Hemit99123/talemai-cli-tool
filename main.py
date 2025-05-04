@@ -1,4 +1,5 @@
 import click
+import pyfiglet
 from helper.creditionals import read_db_config, write_db_config
 from helper.store_vectors import store_vectors
 import asyncio
@@ -6,7 +7,9 @@ import asyncio
 @click.command()
 
 def main():
-    click.echo(click.style("Welcome to Talem AI CLI!", fg="blue"))
+    ascii_art = pyfiglet.figlet_format("Talem AI CLI")
+    click.echo(click.style(ascii_art, fg="blue"))
+
     db_config = read_db_config()
 
     if (db_config == None):
@@ -18,7 +21,7 @@ def main():
     
     else:
         click.echo(click.style("Already have configuration, using them...", fg="yellow"))
-        
+
     # continue on w/ the program (store_vector re-reads the db config anyways)
     collection_name = click.prompt("Enter collection name to update")
     namespace = click.prompt("Enter namespace to update")
@@ -29,7 +32,6 @@ def main():
     # asyncio runs in as async which is required for successful execution within astradb internals
 
     asyncio.run(store_vectors(pdf_url,collection_name,namespace))
-    click.echo(click.style("Stored vector embeddings ✅", fg="green"))
     
 if (__name__ == '__main__'):
     main()

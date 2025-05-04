@@ -4,12 +4,13 @@ from langchain_astradb import AstraDBVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
 from helper.pdf import save_online_pdf
 from helper.creditionals import read_db_config
+from helper.spinner import spinner
 import os
+import click
 
 async def store_vectors(pdf_url, collection_name, namespace):
 
     db_config = read_db_config()
-
     pdf_path = save_online_pdf(pdf_url)
 
     # Error handling if file is not found
@@ -25,6 +26,8 @@ async def store_vectors(pdf_url, collection_name, namespace):
     embedding_model = "sentence-transformers/all-MiniLM-L6-v2"
     embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
 
+    spinner()
+
     vectorstore = AstraDBVectorStore(
         collection_name=collection_name,
         embedding=embeddings,
@@ -33,7 +36,8 @@ async def store_vectors(pdf_url, collection_name, namespace):
         namespace=namespace,
     )
   
-
     vectorstore.add_documents(documents=docs)
 
     os.remove(pdf_path)
+
+    click.echo(click.style("Stored vector embeddings ✅", fg="green"))
