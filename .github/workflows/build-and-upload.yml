@@ -46,6 +46,6 @@ jobs:
           user: __token__
           password: ${{ secrets.PYPI_API_TOKEN }}
 
-      - name: Cleanup build artifacts
+      - name: Cleanup build assets
         run: |
           rm -rf dist/ build/ *.egg-info
