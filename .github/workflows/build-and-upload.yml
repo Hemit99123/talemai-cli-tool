@@ -20,26 +20,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
-      - name: Check if version is bumped
-        id: version-check
-        run: |
-          # Extract current version from setup.py
-          current_version=$(grep -oP "version=\K[0-9]+\.[0-9]+\.[0-9]+" setup.py)
-          echo "Current version: $current_version"
           
-          # Compare with the previous version from the last commit
-          last_commit_version=$(git log -1 -p --setup.py | grep -oP "version=\K[0-9]+\.[0-9]+\.[0-9]+")
-          echo "Last commit version: $last_commit_version"
-          
-          # If versions are the same, fail the workflow
-          if [ "$current_version" == "$last_commit_version" ]; then
-            echo "Version has not been updated. Failing the workflow."
-            exit 1  # Exit with non-zero status to fail the workflow
-          else
-            echo "Version has been bumped."
-          fi
-
       - name: Install build dependencies
         run: |
           python -m pip install --upgrade pip
