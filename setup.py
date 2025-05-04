@@ -21,7 +21,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'talemai = talemai.__main__:main',  # Adjust path as needed
+            'talemai = src.__main__:main',  # Adjust path as needed
         ],
     },
 )

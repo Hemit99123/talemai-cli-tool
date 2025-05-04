@@ -1,7 +1,7 @@
 import click
 import pyfiglet
-from talemai.helper.creditionals import read_db_config, write_db_config
-from talemai.helper.store_vectors import store_vectors
+from src.helper.creditionals import read_db_config, write_db_config
+from src.helper.store_vectors import store_vectors
 import asyncio
 
 @click.command()
