@@ -2,31 +2,19 @@ from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_astradb import AstraDBVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
-from helper.pdf import save_online_pdf
+from pdf import save_online_pdf
+from helper.creditionals import read_db_config
 import os
 
-async def store_vectors():
+async def store_vectors(pdf_url, collection_name, namespace):
+
+    db_config = read_db_config()
 
     ASTRA_DB_API_ENDPOINT = input("AstraDB API Endpoint: ")
     ASTRA_DB_APPLICATION_TOKEN = input("AstraDB Application Token: ")
-    ASTRA_DB_NAMESPACE = input("AstraDB Namespace: ")
 
 
-    pdf_path = None
-    is_local = input("Is the file local? Y/N: ").upper()
-    
-    if (is_local == "Y"):
-        file_name = input("Name of the file: ")
-
-        # Ensure the PDF file exists
-        pdf_path = f"./sources/{file_name}.pdf"
-
-    elif (is_local == "N"):
-        pdf_url = input("Enter pdf url:")
-        pdf_path = save_online_pdf(pdf_url)
-
-    else:
-        return "Invalid input"
+    pdf_path = save_online_pdf(pdf_url)
 
     # Error handling if file is not found
     if not os.path.exists(pdf_path):
@@ -42,13 +30,14 @@ async def store_vectors():
     embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
 
     vectorstore = AstraDBVectorStore(
-        collection_name="main_v2",
+        collection_name=collection_name,
         embedding=embeddings,
-        api_endpoint=ASTRA_DB_API_ENDPOINT,
-        token=ASTRA_DB_APPLICATION_TOKEN,
-        namespace=ASTRA_DB_NAMESPACE,
-    )    
+        api_endpoint=db_config.api_endpoint,
+        token=db_config.token,
+        namespace=namespace,
+    )
+  
 
     vectorstore.add_documents(documents=docs)
 
-    return "Vectors stored successfully."
+    os.remove(pdf_path)
