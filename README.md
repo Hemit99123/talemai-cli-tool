@@ -2,6 +2,12 @@
 
 This CLI tooling allows for the addition of more context to be used by Talem AI chatbot.
 
+## Usage (very simple):
+
+```bash
+pip install talemai
+talemai
+```
 ## Technologies used:
 
 - Click (to build a beautiful CLI)
@@ -10,3 +16,5 @@ This CLI tooling allows for the addition of more context to be used by Talem AI 
 - Langchain (to convert the pdfs into vector embeddings)
 - AstraDB (to store the new vector embeddings)
 - Pyfiglet (to make a fashionable and large title greeting)
+- Setuptools (allows to config project to be a module in pip)
+- Twine (CLI tool used to upload onto pip registry)
