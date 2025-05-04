@@ -7,10 +7,7 @@ def save_online_pdf(pdf_url):
     if not pdf_url.startswith(('http://', 'https://')):
         return "Invalid URL provided. URL should start with http:// or https://"
 
-    save_folder = "sources"
-    os.makedirs(save_folder, exist_ok=True)
-
-    file_name = os.path.join(save_folder, pdf_url.split("/")[-1])
+    file_name = os.path.join( "source.pdf")  # Unified file name
 
     try:
         response = requests.get(pdf_url, stream=True)
@@ -18,7 +15,7 @@ def save_online_pdf(pdf_url):
             with open(file_name, "wb") as pdf_file:
                 for chunk in response.iter_content(1024):
                     pdf_file.write(chunk)
-            return f"../source/{file_name}"
+            return file_name
         else:
             return "Failed to download PDF"
     except requests.exceptions.RequestException as e:

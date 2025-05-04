@@ -1,5 +1,6 @@
 .venv
 venv
-astradb_config.txt
+astra_config.json
 .env
 __pycache__
+source.pdf

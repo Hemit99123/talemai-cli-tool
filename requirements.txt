@@ -5,3 +5,4 @@ langchain-huggingface
 click
 aiofiles  
 PyPDF2 
+pypdf
