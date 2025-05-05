@@ -18,3 +18,9 @@ talemai
 - Pyfiglet (to make a fashionable and large title greeting)
 - Setuptools (allows to config project to be a module in pip)
 - Twine (CLI tool used to upload onto pip registry)
+
+## Commit Guide:
+
+To commit properly in this project, you must update the verison of the package in `setup.py`. If you do not, the build command run by Github Actions will fail and the changes will not be pushed to the Pip registry. You will know this is the case if you get the following error:
+
+![image](https://github.com/user-attachments/assets/5d6af954-c848-4647-8c47-6168e93462d8)
