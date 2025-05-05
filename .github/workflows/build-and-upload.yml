@@ -24,6 +24,20 @@ jobs:
           python -m pip install --upgrade pip
           pip install setuptools wheel twine
 
+      - name: Check if version already exists on PyPI
+        run: |
+          CURRENT_VERSION=$(python setup.py --version)
+          echo "Checking if talemai version $CURRENT_VERSION already exists on PyPI..."
+
+          EXISTS=$(curl -s https://pypi.org/pypi/talemai/json | jq -r ".releases[\"$CURRENT_VERSION\"] != null")
+
+          if [ "$EXISTS" = "true" ]; then
+            echo "::error::Version $CURRENT_VERSION already exists on PyPI. Please bump the version before publishing."
+            exit 1
+          else
+            echo "Version $CURRENT_VERSION is new. Proceeding with publish."
+          fi
+
       - name: Clean and build package
         run: |
           rm -rf dist/ build/ *.egg-info
