@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='talemai',
-    version='0.1.9',
+    name='talem-ai-cli',
+    version='0.1.0',
     author='Hemit Patel',
     description='Administrative tool for RAG apps',
     packages=find_packages(),
