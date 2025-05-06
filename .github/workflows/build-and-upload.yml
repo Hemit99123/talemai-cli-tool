@@ -1,44 +1,51 @@
-name: Build & Publish Python Package
+name: Build & Publish to Pip
 
 on:
   push:
     branches:
-      - main  # Trigger on pushes to main
-  workflow_dispatch:  # Also allow manual trigger
+      - main
 
 jobs:
+  check-commit:
+    runs-on: ubuntu-latest
+    outputs:
+      should_publish: ${{ steps.check_commit.outputs.should_publish }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Check commit message for "Publish:"
+        id: check_commit
+        run: |
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          echo "Commit message: $COMMIT_MESSAGE"
+          if echo "$COMMIT_MESSAGE" | grep -iE '^publish:'; then
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+          fi
+
   build-and-publish:
+    needs: check-commit
+    if: needs.check-commit.outputs.should_publish == 'true'
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Check commit message for "Public:"
-        id: check_commit
-        run: |
-          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
-          echo "Commit message: $COMMIT_MESSAGE"
-          if echo "$COMMIT_MESSAGE" | grep -iE '^?publish?:'; then
-            echo "should_publish=true" >> $GITHUB_OUTPUT
-          else
-            echo "should_publish=false" >> $GITHUB_OUTPUT
-          fi
-
       - name: Set up Python
-        if: steps.check_commit.outputs.should_publish == 'true'
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-          
+
       - name: Install build dependencies
-        if: steps.check_commit.outputs.should_publish == 'true'
         run: |
           python -m pip install --upgrade pip
-          pip install setuptools wheel twine
+          pip install setuptools wheel twine jq
 
       - name: Check if version already exists on PyPI
-        if: steps.check_commit.outputs.should_publish == 'true'
         run: |
           CURRENT_VERSION=$(python setup.py --version)
           echo "Checking if talemai version $CURRENT_VERSION already exists on PyPI..."
@@ -53,13 +60,11 @@ jobs:
           fi
 
       - name: Clean and build package
-        if: steps.check_commit.outputs.should_publish == 'true'
         run: |
           rm -rf dist/ build/ *.egg-info
           python setup.py sdist bdist_wheel
 
       - name: Publish to PyPI
-        if: steps.check_commit.outputs.should_publish == 'true'
         uses: pypa/gh-action-pypi-publish@v1.5.1
         with:
           user: __token__
