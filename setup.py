@@ -2,9 +2,9 @@ from setuptools import setup, find_packages
 
 setup(
     name='talemai',
-    version='0.1.8',
+    version='0.1.9',
     author='Hemit Patel',
-    description='A description of your project',
+    description='Administrative tool for RAG apps',
     packages=find_packages(),
     include_package_data=True,
     python_requires='>=3.8',
