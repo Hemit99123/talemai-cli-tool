@@ -5,7 +5,7 @@ This CLI tooling allows for the addition of more context to be used by Talem AI 
 ## Usage (very simple):
 
 ```bash
-pip install talemai
+pip install talem-ai-cli
 talemai
 ```
 ## Technologies used:
