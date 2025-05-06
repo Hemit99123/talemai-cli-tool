@@ -5,6 +5,8 @@ on:
     branches:
       - main
 
+# 2 different jobs, one for checking commits + building/publishing
+
 jobs:
   check-commit:
     runs-on: ubuntu-latest
