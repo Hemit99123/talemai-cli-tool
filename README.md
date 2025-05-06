@@ -17,7 +17,7 @@ talemai
 - AstraDB (to store the new vector embeddings)
 - Pyfiglet (to make a fashionable and large title greeting)
 - Setuptools (allows to config project to be a module in pip)
-- Twine (CLI tool used to upload onto pip registry)
+- Github Actions (CI/CD pipeline whvih builds package and publishes it to Pip) 
 
 ## Commit Guide:
 
