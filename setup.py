@@ -18,6 +18,7 @@ setup(
         'langchain-community',
         'langchain-astradb',
         'langchain-huggingface',
+        'beautifulsoup'
     ],
     entry_points={
         'console_scripts': [
