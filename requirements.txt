@@ -9,3 +9,4 @@ pypdf
 pyfiglet
 setuptools
 bs4
+reportlab
