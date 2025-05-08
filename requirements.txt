@@ -1,12 +1,11 @@
+click
+aiofiles
+PyPDF2
+pypdf
+pyfiglet
 langchain
 langchain-community
 langchain-astradb
 langchain-huggingface
-click
-aiofiles  
-PyPDF2 
-pypdf
-pyfiglet
-setuptools
 bs4
 reportlab
