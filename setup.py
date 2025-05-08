@@ -7,7 +7,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name='talem_ai_cli',
-    version='0.0.3',
+    version='0.0.4',
     author='Hemit Patel',
     author_email='your.email@example.com',  # Optional but recommended
     description='Administrative tool for RAG apps',
