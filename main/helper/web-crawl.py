@@ -4,7 +4,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from pypdf import PdfReader
 
-filename = "source.py"
+filename = "source.pdf"
 
 def crawler(url):
     try:
@@ -27,7 +27,7 @@ def crawler(url):
         if y < 50:
             c.showPage()
             y = height - 50
-        c.drawString(50, y, line[:90])  # Avoid text overflow
+        c.drawString(50, y, line[:90])  # Limit line width
         y -= 15
 
     c.save()
