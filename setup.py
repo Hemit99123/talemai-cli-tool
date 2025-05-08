@@ -18,7 +18,7 @@ setup(
         'langchain-community',
         'langchain-astradb',
         'langchain-huggingface',
-        'beautifulsoup'
+        'bs4'
     ],
     entry_points={
         'console_scripts': [
