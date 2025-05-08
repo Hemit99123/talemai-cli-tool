@@ -37,7 +37,7 @@ setup(
         ],
     },
     classifiers=[  # Optional but improves discoverability
-        'Development Status :: Stable Release',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',
