@@ -1,10 +1,20 @@
 from setuptools import setup, find_packages
+import pathlib
+
+# Get the long description from the README file
+here = pathlib.Path(__file__).parent.resolve()
+long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name='talem_ai_cli',
     version='0.0.3',
     author='Hemit Patel',
+    author_email='your.email@example.com',  # Optional but recommended
     description='Administrative tool for RAG apps',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    url='https://github.com/yourusername/talem_ai_cli',  # Replace with your actual URL
+    license='MIT',  # Or another license, if applicable
     packages=find_packages(),
     include_package_data=True,
     python_requires='>=3.8',
@@ -23,7 +33,20 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'talemai = main.__init__:main',  # Adjust path as needed
+            'talemai=main.__init__:main',  # Make sure this path and function are valid
         ],
+    },
+    classifiers=[  # Optional but improves discoverability
+        'Development Status :: 3 - Alpha',
+        'Intended Audience :: Developers',
+        'Topic :: Software Development :: Build Tools',
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+    ],
+    project_urls={  # Optional
+        'Source': 'https://github.com/yourusername/talem_ai_cli',
+        'Bug Reports': 'https://github.com/yourusername/talem_ai_cli/issues',
     },
 )
