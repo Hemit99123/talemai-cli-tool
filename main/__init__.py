@@ -25,10 +25,14 @@ def main():
     # continue on w/ the program (store_vector re-reads the db config anyways)
     collection_name = click.prompt("Enter collection name to update")
     namespace = click.prompt("Enter namespace to update")
-    pdf_url = click.prompt("Enter PDF url")
+    pdf_or_web = click.prompt("Are you using a PDF or a webpage (pdf/web)")
+    url = click.prompt("Enter url")
     click.echo(click.style("Using stored AstraDB URL", fg="yellow"))
-    
+
+    if (pdf_or_web != "pdf" and pdf_or_web != "web"):
+        return ValueError("Either enter pdf or web.")
+        
     # run the logic for astradb to store info given as vectors 
     # asyncio runs in as async which is required for successful execution within astradb internals
 
-    asyncio.run(store_vectors(pdf_url,collection_name,namespace))
+    asyncio.run(store_vectors(pdf_or_web,url,collection_name,namespace))
