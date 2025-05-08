@@ -9,12 +9,12 @@ setup(
     name='talem_ai_cli',
     version='0.0.5',
     author='Hemit Patel',
-    author_email='your.email@example.com',  # Optional but recommended
+    author_email='hemitvpatel@gmail.com',  
     description='Administrative tool for RAG apps',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/yourusername/talem_ai_cli',  # Replace with your actual URL
-    license='MIT',  # Or another license, if applicable
+    url='https://github.com/hemit99123/talem-ai-cli',  
+    license='MIT',  
     packages=find_packages(),
     include_package_data=True,
     python_requires='>=3.8',
@@ -37,7 +37,7 @@ setup(
         ],
     },
     classifiers=[  # Optional but improves discoverability
-        'Development Status :: 3 - Alpha',
+        'Development Status :: Stable Release',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         'License :: OSI Approved :: MIT License',
@@ -45,8 +45,4 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
     ],
-    project_urls={  # Optional
-        'Source': 'https://github.com/yourusername/talem_ai_cli',
-        'Bug Reports': 'https://github.com/yourusername/talem_ai_cli/issues',
-    },
 )
