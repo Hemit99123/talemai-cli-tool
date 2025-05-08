@@ -18,7 +18,8 @@ setup(
         'langchain-community',
         'langchain-astradb',
         'langchain-huggingface',
-        'bs4'
+        'bs4',
+        'reportlab'
     ],
     entry_points={
         'console_scripts': [
