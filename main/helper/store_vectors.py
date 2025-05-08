@@ -3,15 +3,22 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain_astradb import AstraDBVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
 from main.helper.pdf import save_online_pdf
+from main.helper.web_crawl import crawler
 from main.helper.creditionals import read_db_config
 from main.helper.spinner import spinner
 import os
 import click
 
-async def store_vectors(pdf_url, collection_name, namespace):
+async def store_vectors(pdf_or_web, url, collection_name, namespace):
 
     db_config = read_db_config()
-    pdf_path = save_online_pdf(pdf_url)
+
+    pdf_path = ""
+
+    if (pdf_or_web == "pdf"):
+        pdf_path = save_online_pdf(url)
+    elif (pdf_or_web == "web");
+        pdf_path = crawler(url)
 
     # Error handling if file is not found
     if not os.path.exists(pdf_path):

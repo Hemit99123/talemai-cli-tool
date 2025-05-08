@@ -8,3 +8,5 @@ PyPDF2
 pypdf
 pyfiglet
 setuptools
+bs4
+reportlab

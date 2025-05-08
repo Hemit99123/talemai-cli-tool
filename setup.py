@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='talem_ai_cli',
-    version='0.0.2',
+    version='0.0.3',
     author='Hemit Patel',
     description='Administrative tool for RAG apps',
     packages=find_packages(),
@@ -18,6 +18,8 @@ setup(
         'langchain-community',
         'langchain-astradb',
         'langchain-huggingface',
+        'bs4',
+        'reportlab'
     ],
     entry_points={
         'console_scripts': [
