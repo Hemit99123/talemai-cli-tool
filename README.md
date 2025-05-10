@@ -2,7 +2,7 @@
 
 This CLI tooling allows for the addition of more context to be used by Talem AI chatbot.
 
-## Usage (very simple):
+## Usage:
 
 ```bash
 pip install talem-ai-cli
