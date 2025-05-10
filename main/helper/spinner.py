@@ -1,16 +1,14 @@
-import click
-import itertools
+"""Module for displaying a spinning cursor animation in the command line."""
+
 import time
 
+def spinning_cursor():
+    """Generator that yields a spinning cursor animation."""
+    yield from '|/-\\'  # Use 'yield from' to directly yield the sequence
+
 def spinner():
-
-    # initailly clear screen of everything 
-    click.clear()
-
-    spinner = itertools.cycle("|/-\\")
-
-    for _ in range(20):  # simulate loading through the spinner cycle of charcters 
-        click.echo(click.style(next(spinner), fg="blue"))
+    """Display a spinner in the CLI while a task is running."""
+    spin = spinning_cursor()
+    for _ in range(20):  # Adjust count as needed
+        print(next(spin), end='\r', flush=True)
         time.sleep(0.1)
-        click.clear()
-

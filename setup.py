@@ -1,5 +1,7 @@
-from setuptools import setup, find_packages
-import pathlib
+"""Setup script for talem_ai_cli package."""
+
+import pathlib  # C0411: Move standard library import before third-party imports
+from setuptools import setup, find_packages  # C0411
 
 # Get the long description from the README file
 here = pathlib.Path(__file__).parent.resolve()
@@ -9,12 +11,12 @@ setup(
     name='talem_ai_cli',
     version='0.0.6',
     author='Hemit Patel',
-    author_email='hemitvpatel@gmail.com',  
+    author_email='hemitvpatel@gmail.com',
     description='Administrative tool for RAG apps',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/hemit99123/talem-ai-cli',  
-    license='MIT',  
+    url='https://github.com/hemit99123/talem-ai-cli',
+    license='MIT',
     packages=find_packages(),
     include_package_data=True,
     python_requires='>=3.8',
@@ -33,10 +35,10 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'talemai=main.__init__:main',  # Make sure this path and function are valid
+            'talemai=main.__init__:main',
         ],
     },
-    classifiers=[  # Optional but improves discoverability
+    classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',

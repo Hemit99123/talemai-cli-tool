@@ -1,3 +1,7 @@
+"""Module for storing vector embeddings from PDFs or web content."""
+
+import os
+import click
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_astradb import AstraDBVectorStore
@@ -6,25 +10,24 @@ from main.helper.pdf import save_online_pdf
 from main.helper.web_crawl import crawler
 from main.helper.creditionals import read_db_config
 from main.helper.spinner import spinner
-import os
-import click
+
 
 async def store_vectors(pdf_or_web, url, collection_name, namespace):
+    """Store document vectors into the AstraDB vector store."""
 
     db_config = read_db_config()
-
     pdf_path = ""
 
-    if (pdf_or_web == "pdf"):
+    if pdf_or_web == "pdf":
         pdf_path = save_online_pdf(url)
-    elif (pdf_or_web == "web");
+    elif pdf_or_web == "web":
         pdf_path = crawler(url)
 
     # Error handling if file is not found
     if not os.path.exists(pdf_path):
         raise FileNotFoundError(f"PDF file not found at: {pdf_path}")
 
-    pdf_loader = PyPDFLoader(pdf_path)  
+    pdf_loader = PyPDFLoader(pdf_path)
     documents = pdf_loader.load()
 
     text_splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
@@ -32,7 +35,6 @@ async def store_vectors(pdf_or_web, url, collection_name, namespace):
 
     embedding_model = "sentence-transformers/all-MiniLM-L6-v2"
     embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
-
 
     spinner()
 
@@ -43,7 +45,7 @@ async def store_vectors(pdf_or_web, url, collection_name, namespace):
         token=db_config.token,
         namespace=namespace,
     )
-  
+
     vectorstore.add_documents(documents=docs)
 
     os.remove(pdf_path)
