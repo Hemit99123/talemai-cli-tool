@@ -1,12 +1,10 @@
-import itertools
+"""Module for displaying a spinning cursor animation in the command line."""
+
 import time
-import click
 
 def spinning_cursor():
     """Generator that yields a spinning cursor animation."""
-    while True:
-        for cursor in '|/-\\':
-            yield cursor
+    yield from '|/-\\'  # Use 'yield from' to directly yield the sequence
 
 def spinner():
     """Display a spinner in the CLI while a task is running."""
