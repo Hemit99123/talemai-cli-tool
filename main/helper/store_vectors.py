@@ -17,7 +17,7 @@ async def store_vectors(pdf_or_web, url, collection_name, namespace):
 
     if (pdf_or_web == "pdf"):
         pdf_path = save_online_pdf(url)
-    elif (pdf_or_web == "web");
+    elif (pdf_or_web == "web"):
         pdf_path = crawler(url)
 
     # Error handling if file is not found
