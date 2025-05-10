@@ -1,3 +1,4 @@
+"""Module for downloading PDFs from a given URL and saving them locally."""
 import os
 import requests
 
