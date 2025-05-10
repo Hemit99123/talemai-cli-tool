@@ -1,9 +1,11 @@
+"""Module for crawling a webpage, extracting text, and saving it as a PDF."""
+
 import requests
 from bs4 import BeautifulSoup
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 
-FILENAME = "source.pdf" 
+FILENAME = "source.pdf"
 
 def crawler(url):
     """Crawl the specified URL and save the extracted text as a PDF."""
