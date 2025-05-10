@@ -1,3 +1,5 @@
+"""Handles reading and writing database configuration for the Astra DB connection."""
+
 import os
 import json
 from types import SimpleNamespace
