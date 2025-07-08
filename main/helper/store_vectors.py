@@ -1,4 +1,4 @@
-import os
+from os import getenv
 import click
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
@@ -8,6 +8,8 @@ from main.helper.pdf import save_online_pdf
 from main.helper.web_crawl import crawler
 from main.helper.creditionals import read_db_config
 from main.helper.spinner import spinner
+
+COHERE_API_KEY = getenv("COHERE_API_KEY")
 
 async def store_vectors(pdf_or_web, url, collection_name, namespace):
     """Store document vectors into the AstraDB vector store."""
@@ -29,10 +31,9 @@ async def store_vectors(pdf_or_web, url, collection_name, namespace):
     text_splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
     docs = text_splitter.split_documents(documents)
     
-    # Using Cohere embeddings instead of HuggingFace
     embeddings = CohereEmbeddings(
-        model="embed-english-v3.0",  # Latest Cohere embedding model
-        cohere_api_key=os.getenv("COHERE_API_KEY")  # Make sure to set this environment variable
+        model="embed-english-v3.0",  
+        cohere_api_key=COHERE_API_KEY
     )
     
     spinner()
