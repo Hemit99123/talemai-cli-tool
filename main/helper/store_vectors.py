@@ -1,4 +1,5 @@
-"""This module stores document vectors into the AstraDB vector store using Cohere vector embedding model (for translation from human readable content to mathemtically-based vectors)."""
+"""This module stores document vectors into the AstraDB vector store using Cohere vector embedding model 
+(for translation from human readable content to mathemtically-based vectors)."""
 
 import os
 from os import getenv
