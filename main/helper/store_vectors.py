@@ -11,7 +11,6 @@ from langchain_cohere import CohereEmbeddings
 from main.helper.pdf import save_online_pdf
 from main.helper.web_crawl import crawler
 from main.helper.creditionals import read_db_config
-from main.helper.spinner import spinner
 
 # Setup basic logging
 logging.basicConfig(level=logging.INFO)
@@ -58,8 +57,6 @@ async def store_vectors(pdf_or_web, url, collection_name, namespace, cohere_api_
     )
 
     validate_embedding(embeddings, docs)
-
-    spinner()
 
     vectorstore = AstraDBVectorStore(
         collection_name=collection_name,
