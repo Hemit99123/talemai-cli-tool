@@ -18,7 +18,8 @@ talemai
 - Pyfiglet (to make a fashionable and large title greeting)
 - Setuptools (allows to config project to be a module in pip)
 - Github Actions (CI/CD pipeline whvih builds package and publishes it to Pip)
-- Beautifulsoup (allows for web crawling) 
+- Beautifulsoup (allows for web crawling)
+- Cohere (vector embedding translation)
 
 ## Commit Guide:
 
