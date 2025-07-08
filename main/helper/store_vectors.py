@@ -1,10 +1,10 @@
 """This module stores document vectors into the AstraDB vector store."""
 
 import os
-from os import getenv
-import click
 import logging
+from os import getenv
 
+import click
 from langchain_community.document_loaders import PyPDFLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_astradb import AstraDBVectorStore
@@ -51,7 +51,7 @@ async def store_vectors(pdf_or_web, url, collection_name, namespace):
     sample_vector = embeddings.embed_query(sample_text)
     vector_dim = len(sample_vector)
 
-    logger.info(f"Sample embedding dimension: {vector_dim}")
+    logger.info("Sample embedding dimension: %d", vector_dim)
     if vector_dim != 1024:
         raise ValueError(f"Embedding dimension mismatch: expected 1024, got {vector_dim}")
 
