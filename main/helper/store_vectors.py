@@ -15,14 +15,12 @@ from main.helper.web_crawl import crawler
 from main.helper.creditionals import read_db_config
 from main.helper.spinner import spinner
 
-COHERE_API_KEY = getenv("COHERE_API_KEY")
-
 # Setup basic logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-async def store_vectors(pdf_or_web, url, collection_name, namespace):
+async def store_vectors(pdf_or_web, url, collection_name, namespace, cohere_api_key):
     """Store document vectors into the AstraDB vector store."""
     db_config = read_db_config()
     pdf_path = ""
@@ -43,7 +41,7 @@ async def store_vectors(pdf_or_web, url, collection_name, namespace):
 
     embeddings = CohereEmbeddings(
         model="embed-english-v3.0",  # This returns 1024-dimensional vectors
-        cohere_api_key=COHERE_API_KEY
+        cohere_api_key=cohere_api_key
     )
 
     # Check embedding dimensions
