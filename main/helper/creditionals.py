@@ -14,11 +14,12 @@ def read_db_config():
             return SimpleNamespace(**data)
     return None
 
-def write_db_config(api_endpoint, token):
+def write_db_config(api_endpoint, token, cohere_api_key):
     """Writes the database configuration to the config file."""
     config = {
         "api_endpoint": api_endpoint.strip(),
-        "token": token.strip()
+        "token": token.strip(),
+        "cohere_api_key": cohere_api_key.strip()
     }
     with open(CONFIG_FILE, 'w', encoding='utf-8') as file:
         json.dump(config, file, indent=4)
