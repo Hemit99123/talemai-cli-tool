@@ -24,10 +24,12 @@ def main():
         click.echo(click.style("Already have configuration, using them...", fg="yellow"))
 
     # Continue with the program (store_vectors re-reads the db config anyway)
+    
     collection_name = click.prompt("Enter collection name to update")
     namespace = click.prompt("Enter namespace to update")
     pdf_or_web = click.prompt("Are you using a PDF or a webpage (pdf/web)")
     url = click.prompt("Enter URL")
+    cohere_api_key = click.prompt("Enter Cohere API key:")
 
     click.echo(click.style("Using stored AstraDB URL", fg="yellow"))
 
@@ -35,4 +37,4 @@ def main():
         raise ValueError("Invalid input: please enter 'pdf' or 'web'.")
 
     # Run the logic to store vectors in AstraDB
-    asyncio.run(store_vectors(pdf_or_web, url, collection_name, namespace))
+    asyncio.run(store_vectors(pdf_or_web, url, collection_name, namespace, cohere_api_key))
