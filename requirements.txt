@@ -6,6 +6,6 @@ pyfiglet
 langchain
 langchain-community
 langchain-astradb
-langchain-huggingface
+langchain-cohere
 bs4
 reportlab
