@@ -39,4 +39,4 @@ def main():
     click.echo(click.style("Using stored AstraDB URL", fg="yellow"))
 
     # Run the logic to store vectors in AstraDB
-    asyncio.run(store_vectors(pdf_or_web, url, collection_name, namespace, db_config.cohere_api_key)
+    asyncio.run(store_vectors(pdf_or_web, url, collection_name, namespace, db_config.cohere_api_key))
